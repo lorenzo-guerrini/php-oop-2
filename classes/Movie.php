@@ -27,7 +27,7 @@ class Movie
 
     public function addGenresArray($_genre)
     {
-        array_push($this->genres, $_genre);
+        $this->genres[] = $_genre;
     }
 
     public function getGenresString()
