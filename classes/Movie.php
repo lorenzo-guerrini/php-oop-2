@@ -3,11 +3,13 @@ class Movie
 {
     private $title;
     private $genres;
+    private $actors;
 
-    public function __construct($_title, $_genres)
+    public function __construct($_title, $_genres, $_actors)
     {
         $this->title = $_title;
         $this->genres = $_genres;
+        $this->actors = $_actors;
     }
 
     public function getTitle()
@@ -25,18 +27,29 @@ class Movie
         return $this->genres;
     }
 
+    protected function getGenresString()
+    {
+        return implode(", ", $this->genres);
+    }
+
     public function addGenresArray($_genre)
     {
         $this->genres[] = $_genre;
     }
 
-    public function getGenresString()
+    public function getActors()
     {
-        $output = "";
-        foreach ($this->genres as $genre) {
-            $output .= $genre . " ";
-        }
-        return $output;
+        return $this->actors;
+    }
+
+    protected function getActorsString()
+    {
+        return implode(", ", $this->actors);
+    }
+
+    public function addActorsArray($_actor)
+    {
+        $this->actors[] = $_actor;
     }
 
     public function getInfo()
