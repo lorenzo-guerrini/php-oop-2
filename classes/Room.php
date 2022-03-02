@@ -20,9 +20,14 @@ class Room
         $this->number = $_number;
     }
 
-    public function getSeats()
+    public function getCapacity()
     {
-        return $this->seats;
+        return $this->capacity;
+    }
+
+    public function setCapacity($_capacity)
+    {
+        $this->capacity = $_capacity;
     }
 
     public function getInfo()

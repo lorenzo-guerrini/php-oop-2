@@ -64,11 +64,13 @@ class Movie
         $this->actors[] = $_actor;
     }
 
-    public function getDuration() {
+    public function getDuration()
+    {
         return $this->duration;
     }
 
-    public function setDuration($_duration) {
+    public function setDuration($_duration)
+    {
         $this->duration = $_duration;
     }
 
