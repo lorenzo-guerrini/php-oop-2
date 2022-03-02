@@ -32,7 +32,11 @@ class Movie
         return implode(", ", $this->genres);
     }
 
-    public function addGenresArray($_genre)
+    public function setGenres($_genres) {
+        $this->genres = $_genres;
+    }
+
+    public function addGenre($_genre)
     {
         $this->genres[] = $_genre;
     }
@@ -47,7 +51,11 @@ class Movie
         return implode(", ", $this->actors);
     }
 
-    public function addActorsArray($_actor)
+    public function setActors($_actors) {
+        $this->actors = $_actors;
+    }
+
+    public function addActor($_actor)
     {
         $this->actors[] = $_actor;
     }
