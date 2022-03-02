@@ -32,7 +32,8 @@ class Movie
         return implode(", ", $this->genres);
     }
 
-    public function setGenres($_genres) {
+    public function setGenres($_genres)
+    {
         $this->genres = $_genres;
     }
 
@@ -51,7 +52,8 @@ class Movie
         return implode(", ", $this->actors);
     }
 
-    public function setActors($_actors) {
+    public function setActors($_actors)
+    {
         $this->actors = $_actors;
     }
 
@@ -62,6 +64,6 @@ class Movie
 
     public function getInfo()
     {
-        return $this->title . " " . $this->getGenresString();
+        return $this->title . ", generi: " . $this->getGenresString() . ", attori: " . $this->getActorsString();
     }
 }
