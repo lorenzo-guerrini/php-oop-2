@@ -64,6 +64,6 @@ class Movie
 
     public function getInfo()
     {
-        return $this->title . ", generi: " . $this->getGenresString() . ", attori: " . $this->getActorsString();
+        return $this->title . ", genres: " . $this->getGenresString() . ", actors: " . $this->getActorsString();
     }
 }

@@ -74,7 +74,8 @@ class Show
         $this->priceReduced = $_priceFull - ($_priceFull * 50) / 100;
     }
 
-    public function getInfo() {
-        return $this->movie . ", sala " . $this->room . ", " . $this->date . " " . $this->time . ", intero " . $this->priceFull . ", ridotto " . $this->priceReduced;
+    public function getInfo()
+    {
+        return $this->movie . ", Room " . $this->room . ", " . $this->date . " " . $this->time . ", full " . $this->priceFull . "€, reduced " . $this->priceReduced . "€";
     }
 }
