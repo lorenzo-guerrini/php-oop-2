@@ -1,12 +1,12 @@
 <?php
-
+require_once __DIR__ . '/Room.php';
 class ImmersiveRoom extends Room
 {
     private $specialEffects;
 
     public function __construct($_number, $_seats = 300, $_specialEffects)
     {
-        parent::__construct($_number, $_seats = 300);
+        parent::__construct($_number, $_seats);
         $this->specialEffects = $_specialEffects;
     }
 
@@ -22,11 +22,7 @@ class ImmersiveRoom extends Room
 
     public function getSpecialEffectsString()
     {
-        $output = "";
-        foreach ($this->specialEffects as $effect) {
-            $output .= $effect . " ";
-        }
-        return $output;
+        return implode(", ", $this->specialEffects);
     }
 
     public function getInfo()
