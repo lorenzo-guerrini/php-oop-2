@@ -4,7 +4,7 @@ class ImmersiveRoom extends Room
 {
     private $specialEffects;
 
-    public function __construct($_number, $_capacity = 300, $_specialEffects)
+    public function __construct($_number, $_specialEffects, $_capacity = 300)
     {
         parent::__construct($_number, $_capacity);
         $this->specialEffects = $_specialEffects;
@@ -32,6 +32,6 @@ class ImmersiveRoom extends Room
 
     public function getInfo()
     {
-        return $this->getNumber() . " " . $this->getSpecialEffectsString();
+        return parent::getInfo() . ", effetti speciali:  " . $this->getSpecialEffectsString();
     }
 }
