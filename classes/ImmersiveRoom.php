@@ -27,7 +27,6 @@ class ImmersiveRoom extends Room
 
     public function getInfo()
     {
-        $effects = $this->getSpecialEffectsString();
-        return parent::getNumber() . " " . $effects;
+        return $this->getNumber() . " " . $this->getSpecialEffectsString();
     }
 }

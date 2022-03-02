@@ -54,7 +54,6 @@ class Movie
 
     public function getInfo()
     {
-        $genres = $this->getGenresString();
-        return "{$this->title} {$genres}";
+        return $this->title . " " . $this->getGenresString();
     }
 }
