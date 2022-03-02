@@ -3,11 +3,12 @@ class Room
 {
     protected $number;
     protected $seats;
+    protected $capacity;
 
-    public function __construct($_number, $_seats = 150)
+    public function __construct($_number, $_capacity = 150)
     {
         $this->number = $_number;
-        $this->seats = $_seats;
+        $this->capacity = $_capacity;
     }
 
     public function getNumber()

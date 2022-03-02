@@ -4,15 +4,20 @@ class ImmersiveRoom extends Room
 {
     private $specialEffects;
 
-    public function __construct($_number, $_seats = 300, $_specialEffects)
+    public function __construct($_number, $_capacity = 300, $_specialEffects)
     {
-        parent::__construct($_number, $_seats);
+        parent::__construct($_number, $_capacity);
         $this->specialEffects = $_specialEffects;
     }
 
     public function addSpecialEffect($effect)
     {
         $this->specialEffects[] = $effect;
+    }
+
+    public function setSpecialEffects($_effects)
+    {
+        $this->specialEffects = $_effects;
     }
 
     public function getSpecialEffects()
