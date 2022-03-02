@@ -45,12 +45,17 @@ $roomsArray = [
 
 <body>
     <main>
-        <?php
-        // 1) Recupera l’elenco delle sale con relative informazioni, facendo particolare attenzione alle informazioni aggiuntive per le sale immersive.
-        foreach ($roomsArray as $room) {
-            echo $room->getInfo() . "</br>";
-        }
+        <!-- 1) Recupera l’elenco delle sale con relative informazioni, facendo particolare attenzione alle informazioni aggiuntive per le sale immersive. -->
+        <h2>Rooms</h2>
+        <ul>
+            <?php
+            foreach ($roomsArray as $room) {
+                echo "<li>Room {$room->getNumber()}, capacity </li>";
+            }
+            ?>
+        </ul>
 
+        <?php
         // 2) Recuperare la capienza totale del cinema considerando tutte le sale a disposizione.
         $totalCapacity = 0;
 
