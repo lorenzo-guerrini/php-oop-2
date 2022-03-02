@@ -2,7 +2,6 @@
 class Room
 {
     protected $number;
-    protected $seats;
     protected $capacity;
 
     public function __construct($_number, $_capacity = 150)
@@ -21,8 +20,13 @@ class Room
         $this->number = $_number;
     }
 
-    public function sellTicket($seat, $name)
+    public function getSeats()
     {
-        $this->seats[$seat] = $name;
+        return $this->seats;
+    }
+
+    public function getInfo()
+    {
+        return $this->number . ", capacity:  " . $this->capacity;
     }
 }
