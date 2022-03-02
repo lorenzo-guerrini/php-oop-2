@@ -60,9 +60,13 @@ $roomsArray = [
         $totalCapacity = 0;
 
         foreach ($roomsArray as $room) {
-            //...
+            $totalCapacity += $room->getCapacity();
         }
 
+        echo "<h4>Total capacity: {$totalCapacity}</h4>";
+        ?>
+
+        <?php
         // 3) Stabilito un giorno e un film, recuperare quante proiezioni totali di quel film ci saranno.
 
         // 4) Stabilito un giorno, recupera l’orario di fine dell’ultimo spettacolo.
