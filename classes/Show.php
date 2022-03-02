@@ -38,11 +38,13 @@ class Show
         $this->room = $_room;
     }
 
-    public function getDate() {
+    public function getDate()
+    {
         return $this->date;
     }
 
-    public function setDate($_date) {
+    public function setDate($_date)
+    {
         $this->date = $_date;
     }
 
@@ -70,5 +72,9 @@ class Show
     {
         $this->priceFulll = $_priceFull;
         $this->priceReduced = $_priceFull - ($_priceFull * 50) / 100;
+    }
+
+    public function getInfo() {
+        return $this->movie . ", sala " . $this->room . ", " . $this->date . " " . $this->time . ", intero " . $this->priceFull . ", ridotto " . $this->priceReduced;
     }
 }
