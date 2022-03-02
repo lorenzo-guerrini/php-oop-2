@@ -32,6 +32,14 @@ $roomsArray = [
     new ImmersiveRoom(2, ["smoke", "vibration", "water"])
 ];
 
+$daysArray = [];
+foreach ($showsArray as $show) {
+
+    if (in_array($show->getDate(), $daysArray) == false) {
+        $daysArray[] = $show->getDate();
+    }
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -66,9 +74,46 @@ $roomsArray = [
         echo "<h4>Total capacity: {$totalCapacity}</h4>";
         ?>
 
-        <?php
-        // 3) Stabilito un giorno e un film, recuperare quante proiezioni totali di quel film ci saranno.
+        <!-- 3) Stabilito un giorno e un film, recuperare quante proiezioni totali di quel film ci saranno. -->
+        
 
+        <?php
+        foreach($moviesArray as $movie) {
+            echo "<h2>{$movie->getTitle()}</h2>";
+
+            foreach($showsArray as $show) {
+                if($show->getMovie() == $movie->getTitle()) {
+                    echo $show->getDate() . " " . $show->getTime() . "<br>";
+                }
+            }
+
+            // foreach($daysArray as $day) {
+            //     echo "<h3>$day</h3>";
+            //     foreach($showsArray as $show) {
+            //         if ($show->getDate() == $day) {
+            //             echo $show->getTime() . "<br>";
+            //         }
+            //     }
+            // }
+        }
+        
+        ?>
+        <select name="Movies">
+            <?php
+            foreach ($moviesArray as $movie) {
+                echo "<option>{$movie->getTitle()}</option>";
+            }
+            ?>
+        </select>
+
+        <select name="days">
+            <?php
+            foreach ($daysArray as $day) {
+                echo "<option>{$day}</option>";
+            }
+            ?>
+        </select>
+        <?php
         // 4) Stabilito un giorno, recupera l’orario di fine dell’ultimo spettacolo.
         // BONUS
         // 5) gestire con logica un’eccezione try/catch in un punto qualsiasi del vostro codice.
