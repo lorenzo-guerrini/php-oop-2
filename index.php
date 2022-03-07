@@ -24,7 +24,9 @@ $showsArray = [
     new Show("Melancholia", 1, "21-05-2020", "14:00", 15),
     new Show("The Truman Show", 2, "21-05-2020", "14:00", 10),
     new Show("The Truman Show", 1, "21-05-2020", "16:00", 10),
-    new Show("Melancholia", 2, "21-05-2020", "16:00", 15)
+    new Show("Melancholia", 2, "21-05-2020", "16:00", 15),
+    new Show("Peppa Pig: The Golden Boots", 2, "20-05-2020", "14:00", 12),
+    new Show("Melancholia", 2, "22-05-2020", "16:00", 15)
 ];
 
 $roomsArray = [
@@ -86,38 +88,27 @@ foreach ($showsArray as $show) {
         foreach ($moviesArray as $movie) {
             echo "<h2>{$movie->getTitle()}</h2>";
 
-            foreach ($showsArray as $show) {
-                if ($show->getMovie() == $movie->getTitle()) {
-                    echo $show->getDate() . " " . $show->getTime() . "<br>";
-                }
-            }
-
-            // foreach($daysArray as $day) {
-            //     echo "<h3>$day</h3>";
-            //     foreach($showsArray as $show) {
-            //         if ($show->getDate() == $day) {
-            //             echo $show->getTime() . "<br>";
-            //         }
-            //     }
-            // }
-        }
-
-        ?>
-        <select name="Movies">
-            <?php
-            foreach ($moviesArray as $movie) {
-                echo "<option>{$movie->getTitle()}</option>";
-            }
-            ?>
-        </select>
-
-        <select name="days">
-            <?php
             foreach ($daysArray as $day) {
-                echo "<option>{$day}</option>";
+                echo "<h3> $day </h3> <ul>";
+                $hasShows = true;
+
+                foreach ($showsArray as $show) {
+                    if ($show->getMovie() == $movie->getTitle() && $show->getDate() == $day) {
+                        echo "<li>{$show->getTime()}</li>";
+                    } else if ($show->getMovie() == $movie->getTitle()) {
+                        $hasShows = false;
+                    }
+                }
+
+                if (!$hasShows) {
+                    echo "<li>No shows</li>";
+                }
+
+                echo "</ul>";
             }
-            ?>
-        </select>
+        }
+        ?>
+
         <?php
         // 4) Stabilito un giorno, recupera l’orario di fine dell’ultimo spettacolo.
         // BONUS
