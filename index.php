@@ -149,10 +149,37 @@ $daysArray[] = "23-05-2020"
         }
         ?>
 
+        <!-- 6) Stabilito un film, una sala, un’ora di inizio e un numero di proiezioni, calcolare automaticamente gli orari degli spettacoli, considerando che tra uno spettacolo e l’altro devono passare 15 min. -->
+
         <?php
-        // 6) Stabilito un film, una sala, un’ora di inizio e un numero di proiezioni, calcolare automaticamente gli orari degli spettacoli, considerando che tra uno spettacolo e l’altro devono passare 15 min.
-        //Alcuni film durano meno di un'ora, attenzione!
-        // 7) Stabilito un giorno, recuperare l’elenco dei film in proiezione con relativi attori, i quali dovranno essere stampati con iniziale del nome e cognome “N. Cognome”.
+        function calculateShowsTime($movie, $room, $day, $time, $projections)
+        {
+            echo "<h2>{$movie->getTitle()}'s shows in Room {$room->getNumber()} if starting from $time with $projections projections on $day:</h2>";
+
+            $duration = $movie->getDuration();
+            $dateTime = new DateTime("$day $time");
+
+            $output = "<ul>";
+            for ($i = 0; $i < $projections; $i++) {
+                $output .= "<li>{$dateTime->format('H:i')}</li>";
+                $dateTime->modify(+$duration + 15 . 'minutes');
+            }
+
+            $output .= "</ul>";
+            echo $output;
+        }
+        foreach ($moviesArray as $movie) {
+            calculateShowsTime($movie, $roomsArray[0], "20-05-2000", "14:00", 5);
+        }
+
+        ?>
+
+        <!-- 7) Stabilito un giorno, recuperare l’elenco dei film in proiezione con relativi attori, i quali dovranno essere stampati con iniziale del nome e cognome “N. Cognome”. -->
+
+
+        <?php
+
+        // 
         //Alcuni attorni non hanno il cognome, attenzione!
         ?>
     </main>
