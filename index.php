@@ -9,9 +9,8 @@ require_once __DIR__ . '/classes/Room.php';
 require_once __DIR__ . '/classes/ImmersiveRoom.php';
 
 $moviesArray = [
-    new Movie("Le Fabuleux Destin d'Amélie Poulain", ["comedy", "romance"], ["Audrey Tautou", "Mathieu Kassovitz", "Rufus", "André Dussollier"], 122),
-    new Movie("Peppa Pig: The Golden Boots", ["cartoon"], ["	
-    Lily Snowden-Fine", "Cecily Bloom", "Harley Bird", "Amelie Bea Smith"], 15),
+    new Movie("Le Fabuleux Destin d'Amélie Poulain", ["comedy", "romance"], ["Audrey Tautou", "Mathieu Kassovitz", "Lorella Cravotta ", "André Dussollier"], 122),
+    new Movie("Peppa Pig: The Golden Boots", ["cartoon"], ["Lily Snowden-Fine", "Cecily Bloom", "Harley Bird", "Amelie Smith"], 15),
     new Movie("Melancholia", ["drama", "sci-fi", "disaster"], ["Kirsten Dunst", "Charlotte Gainsbourg", "Kiefer Sutherland", "Alexander Skarsgård"], 130),
     new Movie("The Truman Show", ["psychological", "drama", "comedy", "sci-fi"], ["Jim Carrey", "Ed Harris", "Laura Linney", "Noah Emmerich"], 103)
 ];
@@ -168,19 +167,51 @@ $daysArray[] = "23-05-2020"
             $output .= "</ul>";
             echo $output;
         }
+
         foreach ($moviesArray as $movie) {
             calculateShowsTime($movie, $roomsArray[0], "20-05-2000", "14:00", 5);
         }
-
         ?>
 
         <!-- 7) Stabilito un giorno, recuperare l’elenco dei film in proiezione con relativi attori, i quali dovranno essere stampati con iniziale del nome e cognome “N. Cognome”. -->
 
-
         <?php
+        function printActorsOnDay($day, $showsArray, $moviesArray)
+        {
+            $showsOnDay = [];
+            foreach ($showsArray as $show) {
+                if ($show->getDate() == $day) {
+                    $showsOnDay[] = $show;
+                }
+            }
 
-        // 
-        //Alcuni attorni non hanno il cognome, attenzione!
+            $moviesOnDay = [];
+            foreach ($showsOnDay as $show) {
+                foreach ($moviesArray as $movie) {
+                    if ($show->getMovie() == $movie->getTitle() && !in_array($movie, $moviesOnDay)) {
+                        $moviesOnDay[] = $movie;
+                    }
+                }
+            }
+
+            echo "<h2>Movies projected on $day:</h2>";
+
+            $output = "<ul>";
+            foreach ($moviesOnDay as $movie) {
+                $output .= "<li><strong>{$movie->getTitle()}</strong>: {$movie->getActorSurnamesString()}.</li>";
+            }
+
+            if (empty($moviesOnDay)) {
+                $output .= "<li>No movies</li>";
+            }
+
+            $output .= "</ul>";
+            echo $output;
+        }
+
+        foreach ($daysArray as $day) {
+            printActorsOnDay($day, $showsArray, $moviesArray);
+        }
         ?>
     </main>
 </body>

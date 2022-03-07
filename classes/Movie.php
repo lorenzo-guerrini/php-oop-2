@@ -54,6 +54,17 @@ class Movie
         return implode(", ", $this->actors);
     }
 
+    public function getActorSurnamesString()
+    {
+        $surnames = [];
+        foreach ($this->actors as $actor) {
+            $actorTemp = explode(" ", $actor);
+            $surnames[] = "{$actorTemp[0][0]}. $actorTemp[1]";
+        }
+
+        return implode(", ", $surnames);
+    }
+
     public function setActors($_actors)
     {
         $this->actors = $_actors;
