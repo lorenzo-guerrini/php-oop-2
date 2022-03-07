@@ -60,7 +60,7 @@ foreach ($showsArray as $show) {
             foreach ($roomsArray as $room) {
                 $output = "<li>Room {$room->getNumber()}, capacity {$room->getCapacity()}";
 
-                if(is_a($room, "ImmersiveRoom")) {
+                if (is_a($room, "ImmersiveRoom")) {
                     $output .= ", special effects: {$room->getSpecialEffectsString()}";
                 }
 
@@ -83,11 +83,11 @@ foreach ($showsArray as $show) {
 
         <!-- 3) Stabilito un giorno e un film, recuperare quante proiezioni totali di quel film ci saranno. -->
         <?php
-        foreach($moviesArray as $movie) {
+        foreach ($moviesArray as $movie) {
             echo "<h2>{$movie->getTitle()}</h2>";
 
-            foreach($showsArray as $show) {
-                if($show->getMovie() == $movie->getTitle()) {
+            foreach ($showsArray as $show) {
+                if ($show->getMovie() == $movie->getTitle()) {
                     echo $show->getDate() . " " . $show->getTime() . "<br>";
                 }
             }
@@ -101,7 +101,7 @@ foreach ($showsArray as $show) {
             //     }
             // }
         }
-        
+
         ?>
         <select name="Movies">
             <?php
