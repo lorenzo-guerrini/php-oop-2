@@ -58,13 +58,20 @@ foreach ($showsArray as $show) {
         <ul>
             <?php
             foreach ($roomsArray as $room) {
-                echo "<li>Room {$room->getNumber()}, capacity </li>";
+                $output = "<li>Room {$room->getNumber()}, capacity {$room->getCapacity()}";
+
+                if(is_a($room, "ImmersiveRoom")) {
+                    $output .= ", special effects: {$room->getSpecialEffectsString()}";
+                }
+
+                $output .= ".</li>";
+                echo $output;
             }
             ?>
         </ul>
 
+        <!-- 2) Recuperare la capienza totale del cinema considerando tutte le sale a disposizione. -->
         <?php
-        // 2) Recuperare la capienza totale del cinema considerando tutte le sale a disposizione.
         $totalCapacity = 0;
 
         foreach ($roomsArray as $room) {
@@ -75,8 +82,6 @@ foreach ($showsArray as $show) {
         ?>
 
         <!-- 3) Stabilito un giorno e un film, recuperare quante proiezioni totali di quel film ci saranno. -->
-        
-
         <?php
         foreach($moviesArray as $movie) {
             echo "<h2>{$movie->getTitle()}</h2>";
