@@ -30,7 +30,7 @@ $showsArray = [
     new Show($moviesArray[3]->getTitle(), $roomsArray[1]->getNumber(), "21-05-2020", "14:00", 10),
     new Show($moviesArray[3]->getTitle(), $roomsArray[0]->getNumber(), "21-05-2020", "16:00", 10),
     new Show($moviesArray[2]->getTitle(), $roomsArray[1]->getNumber(), "21-05-2020", "16:00", 15),
-    new Show($moviesArray[1]->getTitle(), $roomsArray[1]->getNumber(), "20-05-2020", "14:00", 12),
+    new Show($moviesArray[1]->getTitle(), $roomsArray[1]->getNumber(), "22-05-2020", "14:00", 12),
     new Show($moviesArray[2]->getTitle(), $roomsArray[1]->getNumber(), "22-05-2020", "16:00", 15)
 ];
 
@@ -92,13 +92,12 @@ $daysArray[] = "23-05-2020"
 
             foreach ($daysArray as $day) {
                 echo "<h4> $day </h4> <ul>";
-                $hasShows = true;
+                $hasShows = false;
 
                 foreach ($showsArray as $show) {
                     if ($show->getMovie() == $movie->getTitle() && $show->getDate() == $day) {
                         echo "<li>{$show->getTime()}</li>";
-                    } else if ($show->getMovie() == $movie->getTitle()) {
-                        $hasShows = false;
+                        $hasShows = true;
                     }
                 }
 
@@ -111,7 +110,8 @@ $daysArray[] = "23-05-2020"
         }
         ?>
 
-        <!-- 4) Stabilito un giorno, recupera l’orario di fine dell’ultimo spettacolo. -->
+        <!-- 4) Stabilito un giorno, recupera l’orario di fine dell’ultimo spettacolo. 
+        5) gestire con logica un’eccezione try/catch in un punto qualsiasi del vostro codice.-->
         <h2>Everyday's last show</h2>
         <?php
         foreach ($daysArray as $day) {
@@ -120,11 +120,15 @@ $daysArray[] = "23-05-2020"
             $lastShowTime = 0;
             $lastShowMovie = "";
 
-            foreach ($showsArray as $show) {
-                if ($show->getDate() == $day && timeToNumber($show->getTime()) > $lastShowTime) {
-                    $lastShowTime = $show->getTime();
-                    $lastShowMovie = $show->getMovie();
+            try {
+                foreach ($showsArray as $show) {
+                    if ($show->getDate() == $day && timeToNumber($show->getTime()) > $lastShowTime) {
+                        $lastShowTime = $show->getTime();
+                        $lastShowMovie = $show->getMovie();
+                    }
                 }
+            } catch (Exception $e) {
+                echo "Exception" . $e->getMessage();
             }
 
             if ($lastShowTime == 0) {
@@ -137,14 +141,15 @@ $daysArray[] = "23-05-2020"
         //Trasforma un orario in un numero per permettere comparazioni tra più orari
         function timeToNumber($time)
         {
+            if (is_null($time)) {
+                throw new Exception("Is null");
+            }
             $tempTimeArray = explode(":", $time);
             return intval($tempTimeArray[0]) + (intval($tempTimeArray[0]) / 60);
         }
         ?>
 
         <?php
-        // BONUS
-        // 5) gestire con logica un’eccezione try/catch in un punto qualsiasi del vostro codice.
         // 6) Stabilito un film, una sala, un’ora di inizio e un numero di proiezioni, calcolare automaticamente gli orari degli spettacoli, considerando che tra uno spettacolo e l’altro devono passare 15 min.
         //Alcuni film durano meno di un'ora, attenzione!
         // 7) Stabilito un giorno, recuperare l’elenco dei film in proiezione con relativi attori, i quali dovranno essere stampati con iniziale del nome e cognome “N. Cognome”.
