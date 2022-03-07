@@ -41,6 +41,7 @@ foreach ($showsArray as $show) {
         $daysArray[] = $show->getDate();
     }
 }
+$daysArray[] = "23-05-2020"
 
 ?>
 
@@ -80,16 +81,17 @@ foreach ($showsArray as $show) {
             $totalCapacity += $room->getCapacity();
         }
 
-        echo "<h4>Total capacity: {$totalCapacity}</h4>";
+        echo "<h3>Total capacity: {$totalCapacity}</h3>";
         ?>
 
         <!-- 3) Stabilito un giorno e un film, recuperare quante proiezioni totali di quel film ci saranno. -->
+        <h2>Movies</h2>
         <?php
         foreach ($moviesArray as $movie) {
-            echo "<h2>{$movie->getTitle()}</h2>";
+            echo "<h3>{$movie->getTitle()}</h3>";
 
             foreach ($daysArray as $day) {
-                echo "<h3> $day </h3> <ul>";
+                echo "<h4> $day </h4> <ul>";
                 $hasShows = true;
 
                 foreach ($showsArray as $show) {
@@ -109,8 +111,38 @@ foreach ($showsArray as $show) {
         }
         ?>
 
+        <!-- 4) Stabilito un giorno, recupera l’orario di fine dell’ultimo spettacolo. -->
+        <h2>Everyday's last show</h2>
         <?php
-        // 4) Stabilito un giorno, recupera l’orario di fine dell’ultimo spettacolo.
+        foreach ($daysArray as $day) {
+            echo "<h3> $day </h3>";
+
+            $lastShowTime = 0;
+            $lastShowMovie = "";
+
+            foreach ($showsArray as $show) {
+                if ($show->getDate() == $day && timeToNumber($show->getTime()) > $lastShowTime) {
+                    $lastShowTime = $show->getTime();
+                    $lastShowMovie = $show->getMovie();
+                }
+            }
+
+            if ($lastShowTime == 0) {
+                echo "No shows";
+            } else {
+                echo "$lastShowTime ($lastShowMovie)";
+            }
+        }
+
+        //Trasforma un orario in un numero per permettere comparazioni tra più orari
+        function timeToNumber($time)
+        {
+            $tempTimeArray = explode(":", $time);
+            return intval($tempTimeArray[0]) + (intval($tempTimeArray[0]) / 60);
+        }
+        ?>
+
+        <?php
         // BONUS
         // 5) gestire con logica un’eccezione try/catch in un punto qualsiasi del vostro codice.
         // 6) Stabilito un film, una sala, un’ora di inizio e un numero di proiezioni, calcolare automaticamente gli orari degli spettacoli, considerando che tra uno spettacolo e l’altro devono passare 15 min.
