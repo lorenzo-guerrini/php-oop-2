@@ -16,22 +16,22 @@ $moviesArray = [
     new Movie("The Truman Show", ["psychological", "drama", "comedy", "sci-fi"], ["Jim Carrey", "Ed Harris", "Laura Linney", "Noah Emmerich"], 103)
 ];
 
-$showsArray = [
-    new Show("Le Fabuleux Destin d'Amélie Poulain", 1, "20-05-2020", "14:00", 12),
-    new Show("Peppa Pig: The Golden Boots", 2, "20-05-2020", "14:00", 12),
-    new Show("Peppa Pig: The Golden Boots", 1, "20-05-2020", "16:00", 12),
-    new Show("Le Fabuleux Destin d'Amélie Poulain", 2, "20-05-2020", "16:00", 12),
-    new Show("Melancholia", 1, "21-05-2020", "14:00", 15),
-    new Show("The Truman Show", 2, "21-05-2020", "14:00", 10),
-    new Show("The Truman Show", 1, "21-05-2020", "16:00", 10),
-    new Show("Melancholia", 2, "21-05-2020", "16:00", 15),
-    new Show("Peppa Pig: The Golden Boots", 2, "20-05-2020", "14:00", 12),
-    new Show("Melancholia", 2, "22-05-2020", "16:00", 15)
-];
-
 $roomsArray = [
     new Room(1),
     new ImmersiveRoom(2, ["smoke", "vibration", "water"])
+];
+
+$showsArray = [
+    new Show($moviesArray[0]->getTitle(), $roomsArray[0]->getNumber(), "20-05-2020", "14:00", 12),
+    new Show($moviesArray[1]->getTitle(), $roomsArray[1]->getNumber(), "20-05-2020", "14:00", 12),
+    new Show($moviesArray[1]->getTitle(), $roomsArray[0]->getNumber(), "20-05-2020", "16:00", 12),
+    new Show($moviesArray[0]->getTitle(), $roomsArray[1]->getNumber(), "20-05-2020", "16:00", 12),
+    new Show($moviesArray[2]->getTitle(), $roomsArray[0]->getNumber(), "21-05-2020", "14:00", 15),
+    new Show($moviesArray[3]->getTitle(), $roomsArray[1]->getNumber(), "21-05-2020", "14:00", 10),
+    new Show($moviesArray[3]->getTitle(), $roomsArray[0]->getNumber(), "21-05-2020", "16:00", 10),
+    new Show($moviesArray[2]->getTitle(), $roomsArray[1]->getNumber(), "21-05-2020", "16:00", 15),
+    new Show($moviesArray[1]->getTitle(), $roomsArray[1]->getNumber(), "20-05-2020", "14:00", 12),
+    new Show($moviesArray[2]->getTitle(), $roomsArray[1]->getNumber(), "22-05-2020", "16:00", 15)
 ];
 
 $daysArray = [];
